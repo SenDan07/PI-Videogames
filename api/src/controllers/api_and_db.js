@@ -1,44 +1,37 @@
-import { Sequelize } from 'sequelize';
+const { Sequelize } = require('sequelize');
 require('dotenv').config();
-import { get } from 'axios';
-import { Videogame, Genre } from '../db';
+const axios = require('axios');
+const { Videogame, Genre } = require('../db');
 const{ MY_VIDYA_API_KEY } = process.env;
 
-// const retrieveVidyaFromApi = async() => {
-//     let apiUrl = `https://api.rawg.io/api/games?key=${MY_VIDYA_API_KEY}&page=${i}&page_size=25`
-//     const vidyaResultsArray = [];
-// }
-// let i=1;
-// let apiUrl = `https://api.rawg.io/api/games?key=${MY_VIDYA_API_KEY}&page=${i}&page_size=25`
-// const vidyaResultArray = [];
-// const retrieveVidyaFromApi = async(items, pageNumber) => {
-//     try{
-//         if(items.length < 100){
-            
-//         }
-//         const apiInfo = await get(apiUrl).data.results.map(e=>{
-//             return{
-//                 id: e.id,
-//                 name: e.name,
-//                 description: e.description,
-//                 released: e.released,
-//                 rating: e.rating,
-//                 platforms: e.platforms.map(e => e.platform.name),
-//                 genres: e.genres.map(e=> e.name)
-//                 image: e.background_image
-//             }
-//         })
-//         if(vidyaResultArray.length<100){
-//             i++;
-//             vidyaResultArray.push(apiInfo);
-//         } else{
-//             return vidyaResultArray;
-//         }
-//     }
-//     catch(err){
-//         console.log(`Unable to fetch API info. ${err}`)
-//     }
-// }
+const retrieveVidyaFromApi = async(items = [], pageNumber = 1) =>{
+    try {
+        if(items.length < 100){
+            let apiUrl = await axios.get(`https://api.rawg.io/api/games?key=${MY_VIDYA_API_KEY}&page=${pageNumber}&page_size=25`)
+            let apiData = apiUrl.data.results.map(e => {
+                return {
+                    id: e.id,
+                    name: e.name,
+                    description: e.description,
+                    released: e.released,
+                    rating: e.rating,
+                    platforms: e.platforms.map(e => e.platform.name),
+                    genres: e.genres.map(e => e.name),
+                    image: e.background_image
+                }
+            })
+            pageNumber++;
+            items = items.concat(apiData);
+            // console.log(items)
+            // console.log(items.length)
+            items = await retrieveVidyaFromApi(items, pageNumber);
+        }
+        return items;
+    }
+    catch(err){
+        console.log(`Unable to fetch vidya info from API ${err}`)
+    }
+}
 
 const retrieveVidyaFromDB = async() => {
     try{
@@ -69,7 +62,7 @@ const retrieveVidyaFromDB = async() => {
         return vidyaDBResponse;
     }
     catch(err){
-        console.log(err);
+        console.log(`Unable to retrieve vidya from DB ${err}`);
     }
 }
 
@@ -81,10 +74,10 @@ const retrieveVidyaMix = async() => {
         return allVidya;
     }
     catch(err){
-        console.log(err)
+        console.log(`Unable to retrieve mix ${err}`)
     }
 }
 
-export default{
+module.exports = {
     retrieveVidyaMix
 }
