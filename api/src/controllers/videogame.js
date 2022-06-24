@@ -32,7 +32,7 @@ const showVidyaByName = async(req, res) =>{
                     rating: e.rating,
                     platforms: e.platforms.map(plat => plat.platform.name),
                     genres:e.genres.map(genre => genre.name),
-                    image: e.background_image
+                    backgroundImage: e.background_image
                 }
             })
             let vgNamesFromDB = await Videogame.findAll({
@@ -62,7 +62,7 @@ const showVidyaByName = async(req, res) =>{
             })
 
             const vidyaByName = [...vgNamesFromApi, ...vgNamesFromDB];
-            console.log(vidyaByName.length)
+            // console.log(vidyaByName.length)
             vidyaByName ? await res.status(200).send(vidyaByName) : res.status(404).json({msg: 'No se encontraron videojuegos con ese nombre.'})
         }
         else res.status(200).send(fullVidyaInfo);
@@ -76,7 +76,7 @@ const findVidyaById = async(id) => {
     try{
         let vidyaById;
         console.log(id)
-        if(id.length < 7){ //no detecta el typeof,
+        if(id.length < 7){ //not detecting value when using typeof
             const idApiUrl = await axios.get(`https://api.rawg.io/api/games/${id}?key=${MY_VIDYA_API_KEY}`);
             vidyaById = {
                 id: idApiUrl.data.id,
