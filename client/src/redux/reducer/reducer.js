@@ -7,7 +7,7 @@ export default function rootReducer( state = initialState, action){
         case 'GET_VIDEOGAMES':
             return{
                 ...state,
-                characters: action.payload
+                videogames: action.payload
             }
 
             

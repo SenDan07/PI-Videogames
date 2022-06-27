@@ -5,7 +5,7 @@ export default function VidyaCard({id, name, genres, backgroundImage}){
         <div>
             <h2>{name}</h2>
             <h4>{genres}</h4>
-            <img src={backgroundImage} alt="videogame cover" width="250px" height="160px" />
+            <img src={backgroundImage} alt="videogame cover" width="350px" height="auto" />
         </div>
     )
 }

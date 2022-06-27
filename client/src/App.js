@@ -7,11 +7,11 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Routes>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/home" component={Home} />
-        </Routes>
         <h1>ダニエルのゲーム</h1>
+        <Routes>
+        <Route exact path="/" element={<Landing/>} />
+        <Route exact path="/home" element={<Home/>} />
+        </Routes>
       </div>
     </BrowserRouter>
   );

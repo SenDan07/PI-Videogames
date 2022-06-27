@@ -17,7 +17,7 @@ const retrieveVidyaFromApi = async(items = [], pageNumber = 1) =>{
                     rating: e.rating,
                     platforms: e.platforms.map(e => e.platform.name),
                     genres: e.genres.map(e => e.name),
-                    image: e.background_image
+                    backgroundImage: e.background_image
                 }
             })
             pageNumber++;
