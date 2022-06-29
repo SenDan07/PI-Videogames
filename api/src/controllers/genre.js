@@ -15,7 +15,6 @@ const retrieveAllGenres = async(req, res) => {
             })
         }
         const allGenreList = await Genre.findAll();
-        console.log(allGenreList.length)
         res.status(200).send(allGenreList);
     }
     catch(err){

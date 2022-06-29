@@ -8,10 +8,10 @@ export default function Pagination({vidyasPerPage, totalVidyas, pages}){
 
     return (
             <nav>
-                <ul>
+                <ul className="pagination">
                     {pageNumbers?.map(number => (
-                            <li key={number}>
-                                <button onClick={() => pages(number)}> {number} </button>
+                            <li className="page-item" key={number}>
+                                <a href="#!" className="page-link" onClick={() => pages(number)}> {number} </a>
                             </li>
                     ))}
                 </ul>
