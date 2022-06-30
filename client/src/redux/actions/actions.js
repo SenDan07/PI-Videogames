@@ -37,13 +37,23 @@ export function filterByGenre(payload){
     }
 }
 
-export function filterByDataStorage(){
+export function filterByDataStorage(payload){
     return{
         type: 'FILTER_BY_DATA_STORAGE',
-        // payload
+        payload: payload
     }
 
 }
-export function sortAlphabetically(){}
+export function sortAlphabetically(payload){
+    return{
+        type: 'SORT_ALPHABETICALLY',
+        payload: payload
+    }
+}
 
-export function sortByRating(){}
+export function sortByRating(payload){
+    return{
+        type: 'SORT_BY_RATING',
+        payload: payload
+    }
+}

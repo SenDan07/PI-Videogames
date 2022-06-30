@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllVidya, fetchAllGenres, filterByGenre } from "../redux/actions/actions";
+import { fetchAllVidya, fetchAllGenres, filterByGenre, filterByDataStorage, sortAlphabetically, sortByRating } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import VidyaCard from "./Card";
 import GenresSelect from "./SortByGenreNav";
@@ -15,6 +15,7 @@ export default function Home(){
     const allGenres = useSelector(state => state.genres)
     const [currentPage, setCurrentPage] = useState(1);
     const [vidyasPerPage] = useState(15);
+    const [sorted, setSorted] = useState('')
     const indexOfLastVidya = currentPage * vidyasPerPage;
     const indexOfFirstVidya = indexOfLastVidya - vidyasPerPage;
 
@@ -44,6 +45,25 @@ export default function Home(){
         setCurrentPage(1);
     }
 
+    function handleFilterByStorage(e){
+        dispatch(filterByDataStorage(e.target.value));
+        setCurrentPage(1)
+    }
+
+    function handleSortAlphabetically(e){
+        e.preventDefault();
+        dispatch(sortAlphabetically(e.target.value));
+        setCurrentPage(1);
+        setSorted(`Sorted ${e.target.value}`)
+    }
+
+    function handleSortByRating(e){
+        e.preventDefault();
+        dispatch(sortByRating(e.target.value));
+        setCurrentPage(1);
+        setSorted(`Sorted ${e.target.value}`)
+    }
+
     return(
         <div>
 
@@ -54,7 +74,11 @@ export default function Home(){
                     allGenres={allGenres}
                     handler={handleFilterGenres}
                 />
-                <Navigation/>
+                <Navigation
+                    byNameCB={handleSortAlphabetically}
+                    dataStorageCB={handleFilterByStorage}
+                    byRatingCB={handleSortByRating}
+                />
             </header>
 
             <main>
