@@ -10,7 +10,7 @@ export function fetchAllVidya(){
                 payload: vidyaPacket.data
             })
         } catch(err) {
-            console.log(`Unable to retrieve videogames JSON from server. ${err}`)
+            console.log(`Unable to retrieve videogames JSON from server. ${err}`);
         }
     }
 }
@@ -25,7 +25,39 @@ export function fetchAllGenres(){
             })
         }
         catch(err){
-            console.log(`Unable to retrieve genres JSON from server, ${err}`)
+            console.log(`Unable to retrieve genres JSON from server, ${err}`);
+        }
+    }
+}
+
+export function fetchVidyaByName(name){
+    return async function(dispatch){
+        try {
+            const vidyaNameMatch = await axios.get(`http://localhost:3001/videogames?name=${name}`);
+            return dispatch({
+                type: 'GET_VIDEOGAME_BY_NAME',
+                payload: vidyaNameMatch.data
+            })
+        }
+        catch(err){
+            console.log(`Unable to retrieve videogame by name from server. ${err}`);
+        }
+    }
+}
+
+export function postNewVidya(payload){
+    return async function(){
+        try {
+            const newVidyaPacket = await axios.post(`http://localhost:3001/videogames`, payload);
+            return newVidyaPacket;
+            /*return{
+                type: 'POST_NEW_VIDEOGAME',
+                payload: newVidyaPacket
+            }
+            */
+        }
+        catch(err){
+            console.log(`Unable to upload new videogame to DB. ${err}`);
         }
     }
 }

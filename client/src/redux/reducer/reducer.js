@@ -20,6 +20,12 @@ export default function rootReducer( state = initialState, action){
                 genres: action.payload
             }
 
+        case 'GET_VIDEOGAME_BY_NAME':
+            return{
+                ...state,
+                permutableVG: action.payload
+            }
+
         case 'FILTER_BY_GENRE':
             allVidya = state.fixedVG;
             const filteredByGenre = action.payload === 'All' ? allVidya : allVidya.filter(e => e.genres?.includes(action.payload));
@@ -51,6 +57,12 @@ export default function rootReducer( state = initialState, action){
                 ...state,
                 permutableVG: sortedByRating
             }
+
+        // case 'POST_NEW_VIDEOGAME':
+        //     return{
+        //         ...state
+        //     }
+
             default: {
                 return{
                     ...state

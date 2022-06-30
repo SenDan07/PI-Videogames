@@ -22,8 +22,6 @@ const retrieveVidyaFromApi = async(items = [], pageNumber = 1) =>{
             })
             pageNumber++;
             items = items.concat(apiData);
-            // console.log(items)
-            // console.log(items.length)
             items = await retrieveVidyaFromApi(items, pageNumber);
         }
         return items;

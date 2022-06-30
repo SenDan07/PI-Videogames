@@ -1,10 +1,10 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllVidya, fetchAllGenres, filterByGenre, filterByDataStorage, sortAlphabetically, sortByRating } from "../redux/actions/actions";
 import { Link } from "react-router-dom";
 import VidyaCard from "./Card";
 import GenresSelect from "./SortByGenreNav";
+import SearchBar from "./SearchBar";
 import Navigation from "./NavBar";
 import Pagination from "./Pagination";
 
@@ -73,12 +73,13 @@ export default function Home(){
                 <GenresSelect
                     allGenres={allGenres}
                     handler={handleFilterGenres}
-                />
+                    />
                 <Navigation
                     byNameCB={handleSortAlphabetically}
                     dataStorageCB={handleFilterByStorage}
                     byRatingCB={handleSortByRating}
-                />
+                    />
+                <SearchBar/>
             </header>
 
             <main>
