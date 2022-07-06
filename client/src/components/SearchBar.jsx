@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchVidyaByName } from "../redux/actions/actions";
 
-export default function SearchBar(){
+export default function SearchBar({setCurrentPage}){
     const dispatch = useDispatch();
     const [name, setName] = useState('');
 
@@ -14,7 +14,8 @@ export default function SearchBar(){
     function handleSubmitVidyaName(e){
         e.preventDefault();
         dispatch(fetchVidyaByName(name))
-        setName('');
+        setName('');//setName not working properly, doesnt clear input after submitting 
+        setCurrentPage(1);
     }
 
     return (

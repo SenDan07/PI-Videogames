@@ -1,7 +1,8 @@
 const initialState = {
     fixedVG: [],
     permutableVG: [],
-    genres: []
+    genres: [],
+    platforms: []
 };
 
 export default function rootReducer( state = initialState, action){
@@ -18,6 +19,12 @@ export default function rootReducer( state = initialState, action){
             return{
                 ...state,
                 genres: action.payload
+            }
+
+        case 'GET_PLATFORMS':
+            return{
+                ...state,
+                platforms: action.payload
             }
 
         case 'GET_VIDEOGAME_BY_NAME':

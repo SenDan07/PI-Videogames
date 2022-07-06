@@ -79,7 +79,9 @@ export default function Home(){
                     dataStorageCB={handleFilterByStorage}
                     byRatingCB={handleSortByRating}
                     />
-                <SearchBar/>
+                <SearchBar
+                    setCurrentPage={setCurrentPage}
+                />
             </header>
 
             <main>
@@ -91,7 +93,7 @@ export default function Home(){
                                     key={e.id}
                                     name={e.name}
                                     genres={e.genres.join(' / ')}
-                                    backgroundImage={e.backgroundImage}
+                                    backgroundImage={e.backgroundImage ? e.backgroundImage : <img src="url:test.gif" alt="videogame case cover"/>}
                                 />
                             </Link>
                         )
@@ -100,7 +102,7 @@ export default function Home(){
             </main>
 
             <footer>
-                <Link to='/videogames'>Create new videogame</Link> /
+                <Link to='/videogame_creation'>Create new videogame</Link> /
                 {/* {console.log(pages)} */}
                 <Pagination
                     vidyasPerPage={vidyasPerPage}

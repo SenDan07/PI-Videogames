@@ -30,6 +30,21 @@ export function fetchAllGenres(){
     }
 }
 
+export function fetchAllPlatforms(){
+    return async function(dispatch){
+        try {
+            const platformPacket = await axios.get("http://localhost:3001/platforms");
+            return dispatch({
+                type: 'GET_PLATFORMS',
+                payload: platformPacket.data
+            })
+        }
+        catch(err){
+            console.log(`Unable to retrieve platforms JSON from API, ${err}`)
+        }
+    }
+}
+
 export function fetchVidyaByName(name){
     return async function(dispatch){
         try {
@@ -50,11 +65,6 @@ export function postNewVidya(payload){
         try {
             const newVidyaPacket = await axios.post(`http://localhost:3001/videogames`, payload);
             return newVidyaPacket;
-            /*return{
-                type: 'POST_NEW_VIDEOGAME',
-                payload: newVidyaPacket
-            }
-            */
         }
         catch(err){
             console.log(`Unable to upload new videogame to DB. ${err}`);
