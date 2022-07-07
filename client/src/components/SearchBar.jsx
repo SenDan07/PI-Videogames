@@ -14,8 +14,8 @@ export default function SearchBar({setCurrentPage}){
     function handleSubmitVidyaName(e){
         e.preventDefault();
         dispatch(fetchVidyaByName(name))
-        setName('');//setName not working properly, doesnt clear input after submitting 
         setCurrentPage(1);
+        setName('')//setName not working properly, doesnt clear input after submitting 
     }
 
     return (

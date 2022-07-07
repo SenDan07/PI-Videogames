@@ -1,6 +1,7 @@
 const initialState = {
     fixedVG: [],
     permutableVG: [],
+    vidyaDetail: [],
     genres: [],
     platforms: []
 };
@@ -31,6 +32,18 @@ export default function rootReducer( state = initialState, action){
             return{
                 ...state,
                 permutableVG: action.payload
+            }
+
+        case 'GET_VIDEOGAME_DETAIL_BY_ID':
+            return{
+                ...state,
+                vidyaDetail: action.payload
+            }
+
+        case 'CLEAR_VIDEOGAME_DETAIL':
+            return{
+                ...state,
+                vidyaDetail: []
             }
 
         case 'FILTER_BY_GENRE':

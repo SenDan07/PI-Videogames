@@ -59,6 +59,26 @@ export function fetchVidyaByName(name){
         }
     }
 }
+export function fetchVidyaById(id){
+    return async function(dispatch){
+        try {
+            const vidyaById = await axios.get(`http://localhost:3001/videogames/${id}`);
+            return dispatch({
+                type: 'GET_VIDEOGAME_DETAIL_BY_ID',
+                payload: vidyaById.data
+            })
+        }
+        catch(err){
+            console.log(`Unable to retrieve videogame by id from server. ${err}`);
+        }
+    }
+}
+
+export function clearVidyaIdDetail(){
+    return {
+        type: 'CLEAR_VIDEOGAME_DETAIL'
+    }
+}
 
 export function postNewVidya(payload){
     return async function(){

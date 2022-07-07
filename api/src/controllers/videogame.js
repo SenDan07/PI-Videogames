@@ -76,7 +76,7 @@ const findVidyaById = async(id) => {
     try{
         let vidyaById;
         console.log(id)
-        if(id.length < 7){ //not detecting value when using typeof
+        if(id.length < 7){
             const idApiUrl = await axios.get(`https://api.rawg.io/api/games/${id}?key=${MY_VIDYA_API_KEY}`);
             vidyaById = {
                 id: idApiUrl.data.id,
