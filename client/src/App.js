@@ -9,7 +9,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1>ダニエルのゲーム</h1>
         <Routes>
         <Route exact path="/" element={<Landing/>} />
         <Route exact path="/home" element={<Home/>} />

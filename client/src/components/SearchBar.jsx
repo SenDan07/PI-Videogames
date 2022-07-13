@@ -15,12 +15,12 @@ export default function SearchBar({setCurrentPage}){
         e.preventDefault();
         dispatch(fetchVidyaByName(name))
         setCurrentPage(1);
-        setName('')//setName not working properly, doesnt clear input after submitting 
+        setName('')
     }
 
     return (
         <div>
-            <input type='text' placeholder="Search Videogame" onChange={(e) => handleInputChange(e)} />
+            <input type='text' placeholder="Search Videogame" value={name} onChange={(e) => handleInputChange(e)} />
             <button type='submit' onClick={(e) => handleSubmitVidyaName(e)} >OK</button>
         </div>
     )

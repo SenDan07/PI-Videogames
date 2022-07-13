@@ -69,6 +69,7 @@ export default function Home(){
 
             <header>
                 <h1>おはよう世界！</h1>
+                <h1>Welcome Aboard！</h1>
                 <button onClick={e => {handleClick(e)}}>Clear Filters</button>
                 <GenresSelect
                     allGenres={allGenres}

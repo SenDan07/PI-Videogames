@@ -63,7 +63,7 @@ export default function rootReducer( state = initialState, action){
             }
 
         case 'SORT_ALPHABETICALLY':
-            const sortbyNamePacket = state.fixedVG.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+            const sortbyNamePacket = state.permutableVG.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));//a-z
             const sortedByName = action.payload === 'ascending' ? sortbyNamePacket: sortbyNamePacket.reverse();
             return{
                 ...state,
@@ -71,7 +71,7 @@ export default function rootReducer( state = initialState, action){
             }
 
         case 'SORT_BY_RATING':
-            const sortedByRatingPacket = state.fixedVG.sort((a, b) => a.rating - b.rating);
+            const sortedByRatingPacket = state.permutableVG.sort((a, b) => a.rating - b.rating);
             const sortedByRating = action.payload === 'lowest' ? sortedByRatingPacket : sortedByRatingPacket.reverse();
             return{
                 ...state,

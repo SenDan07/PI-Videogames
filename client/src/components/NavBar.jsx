@@ -1,7 +1,8 @@
 import React from "react";
 
 export default function Navigation({ byNameCB, dataStorageCB, byRatingCB }){
-    //component not working properly, props not detected as functions at the time of execution
+
+    
     return(
         <nav>
         <span>
